@@ -1,8 +1,42 @@
-<div>
-	<div>Congress</div>
-	<div>
-		<img id="img_key" />
-	</div>
-</div>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script>
 
-$('body').append('')
+
+$(document).ready(function() {
+
+    $.get('http://localhost:3000/cameras', function(array) {
+
+console.log(array[0]);
+        
+      $.each(array, function(key, value) {        
+            var html = "<img id='img_" + key +"' src='" + value.url + "'/>";
+            
+            $("body").append(html + "</br>");
+            
+            setInterval( function() {
+            
+                $('#img_' + key).attr('src',value.url + "?" + Math.random());
+            
+            
+            }, 4000);
+            
+        });
+         
+    });
+
+   
+
+
+
+});
+
+
+</script>
+</head>
+<body>
+
+</body>
+
+</html>
