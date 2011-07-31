@@ -21,6 +21,7 @@ app.get '/', (req, res) ->
 	res.sendfile(__dirname + '/public/index.html')
 	
 app.get '/cameras', (req, res) ->
+	res.header('Content-Type', 'application/json')
 	res.send(response)
 
 

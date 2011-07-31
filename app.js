@@ -23,6 +23,7 @@
     return res.sendfile(__dirname + '/public/index.html');
   });
   app.get('/cameras', function(req, res) {
+    res.header('Content-Type', 'application/json');
     return res.send(response);
   });
   app.listen(3000);
