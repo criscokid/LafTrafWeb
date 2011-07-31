@@ -14,7 +14,6 @@ $(document).ready(function() {
         });
 
 		setInterval( function() {
-			console.log($('img:in-viewport').length)
             $('img:in-viewport').each(function(index, value){
 				var id = $(value).attr('id').replace('img_', '');
 				id = parseInt(id);
