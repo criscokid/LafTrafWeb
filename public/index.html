@@ -1,38 +1,28 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="jquery.viewport.min.js"></script>
 <script>
-
-
 $(document).ready(function() {
 
-    $.get('http://localhost:3000/cameras', function(array) {
-
-console.log(array[0]);
-        
+    $.get('http://localhost:3000/cameras', function(array) {        
       $.each(array, function(key, value) {        
             var html = "<img id='img_" + key +"' src='" + value.url + "'/>";
             
             $("body").append(html + "</br>");
-            
-            setInterval( function() {
-            
-                $('#img_' + key).attr('src',value.url + "?" + Math.random());
-            
-            
-            }, 4000);
-            
+
         });
-         
+
+		setInterval( function() {
+			console.log($('img:in-viewport').length)
+            $('img:in-viewport').each(function(index, value){
+				var id = $(value).attr('id').replace('img_', '');
+				id = parseInt(id);
+				$(value).attr('src',array[id].url + "?" + Math.random());
+			});
+        }, 4000);
     });
-
-   
-
-
-
 });
-
-
 </script>
 </head>
 <body>
